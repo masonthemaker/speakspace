@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -12,15 +12,88 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+@keyframes particles-slide {
+  0% {
+    transform: translateX(-20vw) translateZ(0) scale(0.85);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120vw) translateZ(0) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0%, 88%, 92%, 100% {
+    transform: scaleY(1);
+  }
+  90% {
+    transform: scaleY(0.08);
+  }
+}
+
+@keyframes modal-in {
+  0% {
+    transform: scale(0.12);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Natural eye wandering: occasional saccades left/right/up/down with dwells */
+@keyframes eye-wander {
+  0% { transform: translate(0px, 0px); }
+  8% { transform: translate(-7px, 0px); }
+  18% { transform: translate(-7px, -3px); }
+  30% { transform: translate(0px, -2px); }
+  42% { transform: translate(7px, 0px); }
+  55% { transform: translate(6px, 3px); }
+  68% { transform: translate(0px, 1px); }
+  82% { transform: translate(-5px, 2px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+/* More natural, less frequent blink with a tiny overshoot */
+@keyframes blink-natural {
+  0%, 38%, 42%, 78%, 82%, 100% { transform: scaleY(1); }
+  40% { transform: scaleY(0.06); }
+  41% { transform: scaleY(1.06); }
+  80% { transform: scaleY(0.06); }
+  81% { transform: scaleY(1.04); }
+}
+
+/* Eyes occasionally look around together */
+@keyframes eyes-look {
+  /* longer dwells, same travel distances */
+  0%, 24% { transform: translate(0px, 0px); }
+  30%, 36% { transform: translate(-26px, -10px); }
+  42%, 60% { transform: translate(0px, 0px); }
+  66%, 72% { transform: translate(26px, 8px); }
+  78%, 84% { transform: translate(0px, -14px); }
+  90%, 100% { transform: translate(0px, 0px); }
+}
+
+/* Head subtly follows the eye gaze for a more alive feel */
+@keyframes head-look {
+  0%, 24% { transform: translate(0px, 0px) rotate(0deg); }
+  30%, 36% { transform: translate(-12px, -6px) rotate(-2deg); }
+  42%, 60% { transform: translate(0px, 0px) rotate(0deg); }
+  66%, 72% { transform: translate(12px, 4px) rotate(1.6deg); }
+  78%, 84% { transform: translate(0px, -10px) rotate(0.8deg); }
+  90%, 100% { transform: translate(0px, 0px) rotate(0deg); }
 }
